@@ -1,0 +1,89 @@
+html,body{
+    height: 100%;
+    background-color: #0f172a;
+    margin: 0;
+}
+
+#head h1{
+    margin: 0;
+    text-align: center;
+    font-size: 50px;
+    background-color: #14b8a6;
+    color: #022c22;
+}
+
+.main{
+    display: flex;
+}
+
+.pRow{
+    display: flex;
+}
+
+#sidebar{
+    padding: 50px;
+    gap: 30px;
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    height: 100vh;
+    background-color:#99f6e4;
+    align-items: center;
+}
+
+#content{
+    flex: 1;
+    padding: 50px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    align-items: start;
+
+}
+
+.card{
+    background-color: #f8fafc;
+    border: 4px solid #94a3b8;
+    padding: 10px;
+}
+
+.activeProject{
+    background-color: black;
+    color: white;
+}
+button:hover{
+    cursor: pointer;
+    background-color: rgb(171, 171, 126);
+}
+
+.todoBtn{
+    position: fixed;
+    bottom: 50px;          /* 30px from bottom */
+    right: 50px;           /* 30px from right */
+    width: 60px;
+    height: 60px;
+    font-size: 50px;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+
+}
+
+.card.expanded{
+    height:350px ;
+
+}
+
+.card .description , .card .priority{
+    display: none;
+}
+
+.card.expanded .description ,.card.expanded .priority{
+    display: block;
+}
+
+.addProBtn{
+    border-radius: 10%;
+    border: 3px solid black;
+    font-size: 20px;
+    width: 100px;
+}
