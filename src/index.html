@@ -9,9 +9,28 @@
     <div id="app">
         <div id="head"></div>
         <div class="main">
+        
             <div id="sidebar"></div>
             <div id="content"></div>
         </div>
+    </div>
+    <div id="modal-overlay" class="modal-overlay hidden">
+        <form action="" id="modal-form" >
+            <input type="text" id="projectInput" required placeholder="Project Name">
+            <button>Add</button>
+        </form>
+    </div>
+    <div id="todo-modal" class="modal-overlay hidden">
+        <form class="modal-box" id="todo-form"> <h2>New Task</h2>
+            <input type="text" id="todoTitle" required placeholder="Task Title">
+            <input type="text" id="todoDesc" placeholder="Description (Optional)">
+            <select id="todoPriority">
+                <option value="Low">Priority: Low</option>
+                <option value="Medium" selected>Priority: Medium</option>
+                <option value="High">Priority: High</option>
+            </select>
+            <button>Add Task</button>
+        </form>
     </div>
 </body>
 </html>

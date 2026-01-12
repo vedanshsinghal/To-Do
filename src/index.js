@@ -2,10 +2,16 @@ import { createProject } from "./projects";
 import { createTodo } from "./todos";
 import "./style.css";
 
+function saveToLocalStorage(){
+    localStorage.setItem("projects", JSON.stringify(projects))
+}
+function loadFromLocalStorage(){
+    const data=localStorage.getItem("projects")
+    if (!data) return [createProject("General","general")]
+    return JSON.parse(data)
+}
 
-const projects=[]
-const general= createProject("General","general")
-projects.push(general)
+const projects=loadFromLocalStorage()
 
 const head=document.getElementById("head")
 const content=document.getElementById("content")
@@ -42,6 +48,7 @@ function projectRender(){
             render()})
         deleteBtn.addEventListener("click",()=>{
             deleteProject(project.id)
+            saveToLocalStorage()
             render()})
         row.appendChild(projectBtn)
         row.appendChild(deleteBtn)
@@ -52,14 +59,25 @@ function projectRender(){
     addProjectBtn.addEventListener("click",()=>addproject())
     sidebar.appendChild(addProjectBtn)
 }
+const modal = document.querySelector("#modal-overlay");
+const modalForm = document.querySelector("#modal-form");
+const projectInput = document.getElementById("projectInput");
 
 function addproject(){
-    const name=prompt("Project Name")
-    if (!name) return 
-    const newId = crypto.randomUUID();
-    projects.push(createProject(name,newId))
-    render()
+    modal.classList.remove("hidden")
+    projectInput.focus()
 }
+
+modalForm.addEventListener("submit", (e) => {
+    e.preventDefault(); // CRITICAL: Stops page from refreshing!
+    const name = projectInput.value
+    const newId = crypto.randomUUID();
+    projects.push(createProject(name, newId))
+    saveToLocalStorage();
+    render();
+    projectInput.value = ""; 
+    modal.classList.add("hidden");
+});
 
 let selectedProjectId="general"
 
@@ -84,8 +102,10 @@ function todoRender(){
 
         const todoDel=document.createElement("button")
         todoDel.textContent="Delete"
-        todoDel.addEventListener("click",()=>{
+        todoDel.addEventListener("click",(e)=>{
+            e.stopPropagation()
             project.todos.splice(index,1)
+            saveToLocalStorage()
             render()
         })
         card.appendChild(title)
@@ -107,18 +127,32 @@ addTodoBtn.classList.add("todoBtn")
 addTodoBtn.addEventListener("click",()=> {addTodo()})
 body.appendChild(addTodoBtn)
 
+const todoModal=document.querySelector("#todo-modal")
+const todoForm=document.querySelector("#todo-form")
+const todoT=document.querySelector("#todoTitle")
+const todoD=document.querySelector("#todoDesc")
+const todoP=document.querySelector("#todoPriority")
 function addTodo(){
-    const name = prompt("Todo name?");
-    if (!name) return;
-    const description = prompt("Description?");
-    const priority = prompt("Priority (low / medium / high)?");
-    const todo= createTodo(name,description,priority)
+    todoModal.classList.remove("hidden")
+}
+todoForm.addEventListener("submit", (e) => {
+    e.preventDefault()
+    const nameTodo = todoT.value
+    const todoDescription = todoD.value
+    const todoPriority = todoP.value
+    const todo= createTodo(nameTodo,todoDescription,todoPriority)
     const project = projects.find(
     project => project.id === selectedProjectId
     )
-    project.todos.push(todo);
-    render()
-}
+    project.todos.push(todo)
+    //todoT.value=""
+    //todoD.value=""
+    todoForm.reset() //better
+    todoModal.classList.add("hidden")
+    saveToLocalStorage()
+    render()})
+
+
 
 function deleteProject(id){
     if (id=="general"){

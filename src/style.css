@@ -87,3 +87,119 @@ button:hover{
     font-size: 20px;
     width: 100px;
 }
+
+#modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.5);
+}
+
+#modal-form {
+    background-color: white;
+    padding: 30px;        
+    border-radius: 12px;  
+    width: 320px;         
+    
+    display: flex;
+    flex-direction: column; 
+    gap: 15px;              
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3); 
+}
+
+#modal-form input {
+    padding: 12px;
+    border: 2px solid #e2e8f0; 
+    border-radius: 6px;
+    font-size: 16px;
+    outline: none; 
+}
+
+#modal-form input:focus {
+    border-color: #14b8a6; 
+}
+#modal-form button {
+    padding: 12px;
+    background-color: #14b8a6; 
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#modal-form button:hover {
+    background-color: #0f766e; 
+}
+.modal-overlay{
+    display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hidden {
+    display: none;
+}
+
+.modal-box{
+    background-color: white;
+    padding: 30px;        
+    border-radius: 12px;  
+    width: 320px;         
+    
+    display: flex;
+    flex-direction: column; 
+    gap: 15px;              
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3); 
+}
+.modal-box input {
+    padding: 12px;
+    border: 2px solid #e2e8f0; 
+    border-radius: 6px;
+    font-size: 16px;
+    outline: none; 
+}
+
+.modal-box input:focus {
+    border-color: #14b8a6; 
+}
+.modal-box button {
+    padding: 12px;
+    background-color: #14b8a6; 
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.modal-box button:hover {
+    background-color: #0f766e; 
+}
+
+.modal-box select{
+    padding: 12px;
+    border: 2px solid #e2e8f0; 
+    border-radius: 6px;
+    font-size: 16px;
+    outline: none; 
+}
+.modal-box select:focus {
+    border-color: #14b8a6; 
+}
+
+
+
+#todo-modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.5);
+}
